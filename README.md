@@ -91,10 +91,10 @@ await conn.close();
 
 ## Supported hardware
 
-| Family | Models | Interface |
-|--------|--------|-----------|
-| XHC HB04B | LHB04B-4, LHB04B-6 | USB HID (wired) |
-| XHC HB04B | WHB04B-4, WHB04B-6 | USB HID (wireless dongle) |
+| Family    | Models              | Interface                  |
+|-----------|---------------------|----------------------------|
+| XHC HB04B | LHB04B-4, LHB04B-6  | USB HID (wired)            |
+| XHC HB04B | WHB04B-4, WHB04B-6  | USB HID (wireless dongle)  |
 
 All variants share USB VID/PID `10CE:EB93`.
 
@@ -125,3 +125,7 @@ public API or device I/O layer.
 
 This package is a pendant driver only. It does not implement grbl, serial
 communication, or machine control — the consuming application handles that.
+
+## License
+
+BSD 3-Clause. See [LICENSE](LICENSE).

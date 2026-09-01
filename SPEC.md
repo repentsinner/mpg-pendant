@@ -1,13 +1,17 @@
 # SPEC: mpg_pendant
 
-## Problem
+## Problem §spec:problem
+
+*Status: complete*
 
 CNC operators use MPG pendants (handheld jog controllers) to manually position
 their machines. These pendants connect via USB to a host PC, but no
 Dart/Flutter package exists to communicate with them. Without one, a
 Flutter-based CNC sender cannot read pendant input or update its display.
 
-## Scope
+## Scope §spec:scope
+
+*Status: complete*
 
 This package is a **pendant driver only**. It decodes pendant input and encodes
 display updates. It knows nothing about grbl, serial ports, or machine
@@ -17,9 +21,11 @@ control — the consuming application handles that translation.
 grblHAL on Sienci SLB) lack USB host capability. The pendant must be driven
 from the PC.
 
-## 1. Hardware Target
+## Hardware Target §spec:hardware-target
 
-*Status: complete — PR #4, 2025-01-15*
+*Status: complete*
+
+Delivered in PR #4, 2025-01-15.
 
 The system shall support USB HID-based MPG pendants used by hobbyist and
 prosumer CNC operators. Professional CNC pendants use serial or proprietary
@@ -46,9 +52,11 @@ Supported platforms: Windows, macOS, Linux (desktop only).
 **Why desktop-only:** USB HID requires native OS access. Mobile and web
 platforms do not expose raw HID interfaces.
 
-## 2. Device Discovery
+## Device Discovery §spec:device-discovery
 
-*Status: complete — PR #4, 2025-01-15*
+*Status: complete*
+
+Delivered in PR #4, 2025-01-15.
 
 The system shall enumerate connected pendant devices and return them as
 candidates for connection.
@@ -64,9 +72,11 @@ one device node per USB interface. The number of OS-level device nodes for a
 single pendant varies by platform; the consumer should not need to know
 this — one pendant means one device.
 
-## 3. Connection Lifecycle
+## Connection Lifecycle §spec:connection-lifecycle
 
-*Status: complete — PR #4, 2025-01-15*
+*Status: complete*
+
+Delivered in PR #4, 2025-01-15.
 
 When a pendant is opened, the system shall provide a stream of decoded input
 events.
@@ -82,14 +92,16 @@ events.
 Running them on the consumer's thread would stall its event loop during
 jog operations.
 
-## 4. Input Decoding
+## Input Decoding §spec:input-decoding
 
-*Status: complete — PR #4, 2025-01-15*
+*Status: complete*
+
+Delivered in PR #4, 2025-01-15.
 
 The system shall decode HID input reports into structured pendant state values
 covering all physical input types.
 
-### 4.1 Buttons
+### Buttons
 
 - The system shall decode all pendant buttons to named values.
 - When multiple buttons are pressed simultaneously, all shall be reported.
@@ -97,7 +109,7 @@ covering all physical input types.
   buttons, if the pendant provides them.
 - When no button is pressed, the state shall indicate "none."
 
-### 4.2 Jog Events
+### Jog Events
 
 - The system shall report jog events as (axis, delta) pairs.
 - Clockwise/positive rotation shall produce a positive delta;
@@ -108,16 +120,18 @@ covering all physical input types.
 how much. How the pendant physically maps user input to axis motion (single
 wheel + selector, multiple wheels, etc.) is the driver's concern.
 
-### 4.3 Feed/Step Rate
+### Feed/Step Rate
 
 - The system shall report the currently selected feed or step rate.
 - The system shall resolve any modal behavior (e.g., a single knob that
   means different things in step vs. continuous mode) internally, so the
   consumer receives an unambiguous value.
 
-## 5. Display Output
+## Display Output §spec:display-output
 
-*Status: complete — PR #4, 2025-01-15*
+*Status: complete*
+
+Delivered in PR #4, 2025-01-15.
 
 The system shall accept machine state (axis coordinates, feed rate, spindle
 speed, and other status) and render it on the pendant's display.
@@ -130,9 +144,11 @@ speed, and other status) and render it on the pendant's display.
 **Why init on connect:** The pendant display may retain stale data from a
 previous session.
 
-## 6. Input Validation
+## Input Validation §spec:input-validation
 
-*Status: complete — PR #4, 2025-01-15*
+*Status: complete*
+
+Delivered in PR #4, 2025-01-15.
 
 - Input that fails structural validation shall be dropped silently.
 - Unrecognized input codes shall map to a safe default with the raw value
@@ -142,9 +158,11 @@ previous session.
 or unsupported variants. Preserving them aids debugging without crashing the
 consumer.
 
-## 7. Architecture Boundaries
+## Architecture Boundaries §spec:architecture-boundaries
 
-*Status: complete — PR #4, 2025-01-15*
+*Status: complete*
+
+Delivered in PR #4, 2025-01-15.
 
 The consumer shall interact with pendants through a generic API expressed in
 standard CNC vocabulary (axes, buttons, jog wheel, feed selector, display
@@ -159,9 +177,11 @@ independently.
 per platform. Coupling them would force changes in one to ripple into the
 other.
 
-## 8. Dependencies
+## Dependencies §spec:dependencies
 
-*Status: complete — PR #4, 2025-01-15*
+*Status: complete*
+
+Delivered in PR #4, 2025-01-15.
 
 The system shall use a single native HID library for all desktop platforms
 rather than per-platform implementations.
@@ -172,9 +192,11 @@ rather than per-platform implementations.
 API across Windows, macOS, and Linux. It supports both input reports and
 feature reports, which the pendant requires for bidirectional communication.
 
-## 9. Testing Strategy
+## Testing Strategy §spec:testing-strategy
 
-*Status: complete — PR #4, 2025-01-15*
+*Status: complete*
+
+Delivered in PR #4, 2025-01-15.
 
 - Protocol tests shall not require I/O or hardware.
 - Device tests shall not require hardware.
