@@ -1,3 +1,19 @@
+# 1.0.0 (2026-09-01)
+
+
+### Bug Fixes
+
+* **ci:** configure release-please for pre-1.0 semver ([461bcf2](https://github.com/repentsinner/mpg_pendant/commit/461bcf205116eee19db92641709596f23dc20758))
+
+
+### Features
+
+* add mpg_pendant HID driver for XHC WHB04B CNC pendants ([a60a024](https://github.com/repentsinner/mpg_pendant/commit/a60a024960d58e3bb522df57b5ada8d470ada01d))
+* **device:** move HID I/O to dedicated worker isolate ([b62251b](https://github.com/repentsinner/mpg_pendant/commit/b62251b75f95163806892b28fb71c0400b9ac4ac))
+* **example:** add LCD mockup, feed/spindle controls, and protocol hex dump ([905b37c](https://github.com/repentsinner/mpg_pendant/commit/905b37c1993d5512d1b9f08472a7c0b62002aed0))
+* fix macOS exclusive device access and handle disconnect gracefully ([#16](https://github.com/repentsinner/mpg_pendant/issues/16)) ([5309c8e](https://github.com/repentsinner/mpg_pendant/commit/5309c8e820867f8f94d90ba7b7ab8fb454803843))
+* **monitor:** show HID collection metadata, bump hidapi ([605763a](https://github.com/repentsinner/mpg_pendant/commit/605763adc73b6ee87323599e674f62f937ca0a7e))
+
 # Changelog
 
 ## [0.1.4](https://github.com/repentsinner/mpg_pendant/compare/mpg_pendant-v0.1.3...mpg_pendant-v0.1.4) (2026-02-26)
